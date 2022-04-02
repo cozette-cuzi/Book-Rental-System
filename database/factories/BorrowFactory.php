@@ -20,7 +20,7 @@ class BorrowFactory extends Factory
             'status' =>  $this->faker->randomElement(['PENDING', 'ACCEPTED', 'REJECTED']),
             'request_processed_at' => Carbon::now(),
             'request_managed_by' => 1,
-            'deadline' => Carbon::now()->addDays(rand(7,30))
+            'deadline' => Carbon::now()->addDays(rand(7, 30))
         ];
     }
 }
