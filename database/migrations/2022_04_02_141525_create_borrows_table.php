@@ -15,14 +15,14 @@ class CreateBorrowsTable extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reader_id')->constrained('users');
-            $table->foreignId('book_id')->constrained('books');
+            $table->foreignId('reader_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
             $table->enum('status', ['PENDING', 'ACCEPTED', 'REJECTED', 'RETURNED']);
             $table->date('request_processed_at')->nullable();
             $table->foreignId('request_managed_by')->constrained('users');
             $table->date('deadline')->nullable();
             $table->date('returned_at')->nullable();
-            $table->foreignId('return_managed_by')->constrained('users');
+            $table->foreignId('return_managed_by')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
