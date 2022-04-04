@@ -19,7 +19,7 @@ class CreateBorrowsTable extends Migration
             $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
             $table->enum('status', ['PENDING', 'ACCEPTED', 'REJECTED', 'RETURNED']);
             $table->date('request_processed_at')->nullable();
-            $table->foreignId('request_managed_by')->constrained('users');
+            $table->foreignId('request_managed_by')->constrained('users')->onDelete('cascade');
             $table->date('deadline')->nullable();
             $table->date('returned_at')->nullable();
             $table->foreignId('return_managed_by')->nullable()->constrained('users')->onDelete('cascade');
