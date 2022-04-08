@@ -17,7 +17,7 @@ class BookFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'authors' => $this->faker->name(),
+            'authors' => $this->faker->lastName(),
             'released_at' => Carbon::now(), // password
             'pages' => rand(200, 400),
             'language_code' => $this->faker->randomElement(['hu', 'en', 'fr', 'ar']),

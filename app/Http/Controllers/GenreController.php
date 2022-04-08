@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +38,8 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Genre::findOrFail($id)->with('books')->first();
+        return \view('genre.show', ['data' => $data]);
     }
 
     /**

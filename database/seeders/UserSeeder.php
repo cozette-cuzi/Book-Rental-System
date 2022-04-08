@@ -24,6 +24,20 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'is_librarian' => true
         ]);
+        DB::table('users')->insert([
+            'name' => "Librarian",
+            'email' => 'librarian@brs.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'is_librarian' => true
+        ]);
+        DB::table('users')->insert([
+            'name' => "Reader",
+            'email' => 'reader@brs.com ',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'is_librarian' => false
+        ]);
         User::factory(10)->create();
     }
 }
