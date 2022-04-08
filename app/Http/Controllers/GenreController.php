@@ -38,8 +38,8 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        $data = Genre::findOrFail($id)->with('books')->first();
-        return \view('genre.show', ['data' => $data]);
+        $data = Genre::whereId($id)->with('books')->first();
+        return \view('genres.show', ['data' => $data]);
     }
 
     /**

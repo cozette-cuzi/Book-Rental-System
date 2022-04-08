@@ -16,12 +16,13 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'authors' => $this->faker->lastName(),
-            'released_at' => Carbon::now(), // password
+            'name' => rtrim($this->faker->sentence(rand(2, 5), true), '.'),
+            'authors' => $this->faker->name(),
+            'released_at' => Carbon::now()->toDateString(),
             'pages' => rand(200, 400),
             'language_code' => $this->faker->randomElement(['hu', 'en', 'fr', 'ar']),
             'isbn' => $this->faker->unique()->uuid(),
+            'description' => $this->faker->sentence(rand(30, 50), true),
             'in_stock' => rand(0, 30),
         ];
     }

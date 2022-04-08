@@ -76,6 +76,13 @@
   }
 }
 
+.chip {
+  display: inline-block;
+  padding: 3px 15px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

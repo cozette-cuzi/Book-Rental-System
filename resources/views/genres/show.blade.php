@@ -10,7 +10,7 @@
             <div class="ms-2 me-auto">
                 <div class="fw-bold">{{$book['name'] }}</div>
             </div>
-            {{-- <a href='{{ route('books.show', $book['id']) }}' class=' link-primary'>Visit</a> --}}
+            <a href='{{ route('books.show', $book['id']) }}' class=' link-primary'>Visit</a>
         </li>
         @endforeach
     </ol>

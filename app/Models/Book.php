@@ -12,6 +12,7 @@ class Book extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['available'];
 
     public function borrows()
     {
@@ -21,5 +22,10 @@ class Book extends Model
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
+    }
+
+    public function getAvailableAttribute()
+    {
+        return $this->in_stock - $this->borrows->where('status', '=', 'ACCEPTED')->count();
     }
 }

@@ -41,7 +41,7 @@ class GenreSeeder extends Seeder
         $genres = Genre::all();
         Book::all()->each(function ($book) use ($genres) {
             $book->genres()->attach(
-                $genres->random(rand(1, 3))->pluck('id')->toArray()
+                $genres->random(rand(1, 4))->pluck('id')->toArray()
             );
         });
     }
