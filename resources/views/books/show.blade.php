@@ -1,7 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{ $data['name'] }}</h1>
+    <div class="row">
+        <div class="col">
+            <p class="fs-1 fw-bold">{{ $data['name'] }}</p>
+        </div>
+        <div class="col">
+            @if (Auth::user() && ($borrowed = Auth::user()->borrowed($data['id'])))
+                <div>
+                    <p class="fs-5  text-success text-end">You Have Ongoing Request</p>
+                </div>
+            @else
+                <form method="POST" action="{{ route('books.borrow', $data['id']) }}">
+                    @csrf
+                    <button class="btn btn-outline-success px-4 float-end" type="submit">
+                        Borrow
+                    </button>
+                </form>
+            @endif
+
+        </div>
+    </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item"></li>
         <li class="list-group-item">

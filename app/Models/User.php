@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Borrow::class, 'return_managed_by');
     }
+
+    public function borrowed($id)
+    {
+        return $this->readerBorrows->where('book_id', '=', $id)->whereNotIn('status', ['REJECTED', 'RETURNED'])->count();
+    }
 }

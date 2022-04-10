@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,29 +21,20 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        //
+        $data['pending'] = Auth::user()->readerBorrows->where('status', 'PENDING');
+        $data['accepted'] = Auth::user()->readerBorrows->where('status', 'ACCEPTED')->filter(function ($item) {
+            return ($item->deadline >= Carbon::now()->endOfDay());
+        });
+        $data['late'] = Auth::user()->readerBorrows->where('status', 'ACCEPTED')->filter(function ($item) {
+            return ($item->deadline < Carbon::now()->endOfDay());
+        });
+        $data['rejected'] = Auth::user()->readerBorrows->where('status', 'REJECTED');
+        $data['returned'] = Auth::user()->readerBorrows->where('status', 'RETURNED');
+        return \view('borrows.list', ['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -44,9 +42,12 @@ class BorrowController extends Controller
      * @param  \App\Models\Borrow  $borrow
      * @return \Illuminate\Http\Response
      */
-    public function show(Borrow $borrow)
+    public function show($id)
     {
-        //
+        $data = Borrow::whereId($id)->with('reader', 'book', 'requestManagedBy', 'returnManagedBy')->first();
+        // \dd($data->book_id);
+        $data->isLate =     $data->status == 'ACCEPTED' && $data->deadline < Carbon::now()->endOfDay();
+        return \view('borrows.show', ['data' => $data]);
     }
 
     /**
