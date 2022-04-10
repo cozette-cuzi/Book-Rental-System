@@ -16,7 +16,7 @@ class IsLibrarianMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user('is_librarian')) {
+        if ($request->user() && $request->user()->is_librarian) {
             return $next($request);
         }
         return \abort(401);

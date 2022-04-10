@@ -16,9 +16,12 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics');
 
-Route::apiResource('/genres', GenreController::class);
 
-Route::apiResource('/books', BookController::class);
+Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
 Route::post('books/{id}/borrow', [BookController::class, 'borrow'])->name('books.borrow');
 
+Route::post('/books', [BookController::class, 'store'])->name('books.store');
+
+Route::apiResource('/genres', GenreController::class);
+Route::apiResource('/books', BookController::class);
 Route::apiResource('/borrows', BorrowController::class);

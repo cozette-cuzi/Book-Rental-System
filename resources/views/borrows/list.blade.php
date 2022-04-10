@@ -23,7 +23,7 @@
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active mt-3" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
             @if ($data['pending']->count() == 0)
-                <p class="fs-4">No Rental</p>
+                <p class="fs-4">No Rentals</p>
             @else
                 <p class="fs-4">
                     Pending Rentals:
@@ -35,7 +35,6 @@
                             <th scope="col">Book Title</th>
                             <th scope="col">Authors</th>
                             <th scope="col">Date of Rental</th>
-                            <th scope="col">Deadline</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +48,6 @@
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
                                 <td>{{ $borrow->book->created_at }}</td>
-                                <td>{{ $borrow->book->deadline }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -59,7 +57,7 @@
 
         <div class="tab-pane fade mt-3" id="nav-accepted" role="tabpanel" aria-labelledby="nav-accepted-tab">
             @if ($data['accepted']->count() == 0)
-                <p class="fs-4">No Rental</p>
+                <p class="fs-4">No Rentals</p>
             @else
                 <p class="fs-4">
                     Accepted Rentals:
@@ -96,7 +94,7 @@
 
         <div class="tab-pane fade mt-3" id="nav-late" role="tabpanel" aria-labelledby="nav-late-tab">
             @if ($data['late']->count() == 0)
-                <p class="fs-4">No Rental</p>
+                <p class="fs-4">No Rentals</p>
             @else
                 <p class="fs-4">
                     Late Rentals:
@@ -134,7 +132,7 @@
 
 
             @if ($data['rejected']->count() == 0)
-                <p class="fs-4">No Rental</p>
+                <p class="fs-4">No Rentals</p>
             @else
                 <p class="fs-4">
                     Rejected Rentals:
@@ -173,7 +171,7 @@
 
         <div class="tab-pane fade mt-3" id="nav-returned" role="tabpanel" aria-labelledby="nav-returned-tab">
             @if ($data['returned']->count() == 0)
-                <p class="fs-4">No Rental</p>
+                <p class="fs-4">No Rentals</p>
             @else
                 <p class="fs-4">
                     Returned Rentals:

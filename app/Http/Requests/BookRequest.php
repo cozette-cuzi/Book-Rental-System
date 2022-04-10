@@ -24,15 +24,17 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|string',
-            'authors'       => 'required|string',
+            'name'          => 'required|string|max:255',
+            'authors'       => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'released_at'   => 'date|required',
+            'released_at'   => 'date|required|before:now',
             'cover_image'   => 'nullable|string',
             'pages'         => 'required|integer',
             'language_code' => 'nullable|string',
-            'isbn'          => 'unique|string',
-            'in_stock'      => 'required|integer'
+            'isbn'          => 'unique:books,isbn|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i',
+            'genres'        => 'array',
+            'genres.*'      => 'exists:genres,id',
+            'in_stock'      => 'required|integer|min:0'
         ];
     }
 }
