@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Book;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BookRequest extends FormRequest
 {
@@ -31,7 +33,10 @@ class BookRequest extends FormRequest
             'cover_image'   => 'nullable|string',
             'pages'         => 'required|integer',
             'language_code' => 'nullable|string',
-            'isbn'          => 'unique:books,isbn|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i',
+            'isbn'          => [
+                'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i',
+                Rule::unique('books')->ignore(Book::findOrFail(\request('id'))->isbn)
+            ],
             'genres'        => 'array',
             'genres.*'      => 'exists:genres,id',
             'in_stock'      => 'required|integer|min:0'

@@ -18,9 +18,9 @@ Route::get('/statistics', [HomeController::class, 'statistics'])->name('statisti
 
 
 Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
 Route::post('books/{id}/borrow', [BookController::class, 'borrow'])->name('books.borrow');
 
-Route::post('/books', [BookController::class, 'store'])->name('books.store');
 
 Route::apiResource('/genres', GenreController::class);
 Route::apiResource('/books', BookController::class);

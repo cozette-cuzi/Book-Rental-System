@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\HomePageRepository;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\Genre;
@@ -10,14 +11,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private HomePageRepository $repository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(HomePageRepository $repository)
     {
         // $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     /**
@@ -27,17 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = $this->__statistics();
-        $genres = Genre::all();
-        return view('home', ['data' => $data, 'genres' => $genres]);
-    }
-
-    private function __statistics()
-    {
-        $data['NOUsers'] = User::all()->count();
-        $data['NOGenres'] = Genre::all()->count();
-        $data['NOBooks'] = Book::all()->count();
-        $data['NOActiveBookRentals'] = Borrow::all()->where('status', '=', 'ACCEPTED')->count();
-        return $data;
+        return view('home', $this->repository->getData());
     }
 }
