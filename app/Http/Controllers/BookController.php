@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\HomePageRepository;
-use App\Http\Requests\BookRequest;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -23,8 +24,7 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $data = Book::whereId($id)->with('genres')->first();
-
+        $data = Book::findOrFail($id);
         return \view('books.show', ['data' => $data]);
     }
 
@@ -42,7 +42,7 @@ class BookController extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function store(BookRequest $request)
+    public function store(StoreBookRequest $request)
     {
         $data = $request->validated();
         $genres = $data['genres'];
@@ -52,14 +52,20 @@ class BookController extends Controller
         return redirect()->route('home', $this->homePageRepository->getData());
     }
 
-    public function update(Book $book, BookRequest $request)
+    public function update(Book $book, UpdateBookRequest $request)
     {
         $data = $request->validated();
         $genres = $data['genres'];
         unset($data['genres']);
-        $book = Book::create($data);
+        $book->update($data);
         $genres = $book->genres()->sync($genres);
-        return redirect()->route('books.show', ['book' => $book->id]);
+        return \view('books.show', ['data' => Book::find($book->id)]);
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return true;
     }
 
     public function create()

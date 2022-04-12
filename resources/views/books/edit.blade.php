@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="w-50 m-auto" method="POST" action="{{ route('books.update', $book->id) }}">
-        <p class="fs-4">Edit Book</p>
+    <form class="w-50 m-auto" method="POST" action="{{ route('books.update2', $book->id) }}">
         @csrf
         @method('PUT')
+        <p class="fs-4">Edit Book</p>
+        <input type="hidden" name="id" value="{{ $book->id }}">
         <div class="mb-3">
             <div class="form-floating">
                 <input class="form-control @error('name') is-invalid @enderror" placeholder="name" id="name" name="name"

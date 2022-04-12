@@ -20,6 +20,7 @@ Route::get('/statistics', [HomeController::class, 'statistics'])->name('statisti
 Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
 Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
 Route::post('books/{id}/borrow', [BookController::class, 'borrow'])->name('books.borrow');
+// Route::put('books/{book}', [BookController::class, 'update'])->name('books.update2');
 
 
 Route::apiResource('/genres', GenreController::class);

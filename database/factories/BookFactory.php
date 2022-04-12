@@ -21,7 +21,7 @@ class BookFactory extends Factory
             'released_at' => Carbon::now()->toDateString(),
             'pages' => rand(200, 400),
             'language_code' => $this->faker->randomElement(['hu', 'en', 'fr', 'ar']),
-            'isbn' => $this->faker->unique()->uuid(),
+            'isbn' => $this->faker->unique()->isbn13(),
             'description' => $this->faker->sentence(rand(30, 50), true),
             'in_stock' => rand(0, 30),
         ];

@@ -11,12 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src=" https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/js/BsMultiSelect.min.js"></script>
-
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/js/BsMultiSelect.esm.min.js">
-    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
@@ -25,10 +19,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/css/BsMultiSelect.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 
 
 
@@ -93,7 +86,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Book;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class BookRequest extends FormRequest
+class UpdateBookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,10 +32,7 @@ class BookRequest extends FormRequest
             'cover_image'   => 'nullable|string',
             'pages'         => 'required|integer',
             'language_code' => 'nullable|string',
-            'isbn'          => [
-                'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i',
-                Rule::unique('books')->ignore(Book::findOrFail(\request('id'))->isbn)
-            ],
+            'isbn'          => 'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i|unique:books,isbn,' . \request('id'),
             'genres'        => 'array',
             'genres.*'      => 'exists:genres,id',
             'in_stock'      => 'required|integer|min:0'
