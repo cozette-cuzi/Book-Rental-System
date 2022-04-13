@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\HomePageRepository;
+use App\Http\Requests\GenreRequest;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 
@@ -9,70 +11,31 @@ class GenreController extends Controller
 {
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private HomePageRepository $homePageRepository;
+
+    public function __construct(HomePageRepository $repository)
+    {
+        $this->middleware('is.librarian')->except('show');
+        $this->homePageRepository = $repository;
+    }
+
+
+
     public function create()
     {
-        //
+        return \view('genres.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $data = Genre::whereId($id)->with('books')->first();
+        $data = Genre::findOrFail($id);
         return \view('genres.show', ['data' => $data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function store(GenreRequest $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $data = $request->validated();
+        Genre::create($data);
+        return redirect()->route('home', $this->homePageRepository->getData());
     }
 }

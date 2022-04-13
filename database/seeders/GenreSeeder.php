@@ -19,7 +19,7 @@ class GenreSeeder extends Seeder
     {
         $this->faker = Faker::create();
         DB::table('genres')->truncate();
-        $values = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
+        $values = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
         $names = [
             'Action and Adventure',
             'Classics',

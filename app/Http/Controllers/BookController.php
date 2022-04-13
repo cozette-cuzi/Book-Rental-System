@@ -7,7 +7,6 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
@@ -17,7 +16,7 @@ class BookController extends Controller
 
     public function __construct(HomePageRepository $repository)
     {
-        $this->middleware('is.librarian')->only('create', 'store', 'edit', 'update');
+        $this->middleware('is.librarian')->only('create', 'store', 'edit', 'update', 'destroy');
         $this->middleware('auth')->only('borrow');
         $this->homePageRepository = $repository;
     }
@@ -65,7 +64,7 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return true;
+        return \view('home', $this->homePageRepository->getData());
     }
 
     public function create()
