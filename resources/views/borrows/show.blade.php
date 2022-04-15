@@ -77,7 +77,9 @@
                             @endforeach
                         </select>
                         @error('status')
-                            <div class="fs-6 text-danger fw-light">{{ $message }}</div>
+                            <div class="fs-6 text-danger fw-light float-end">
+                                <p>{{ $message }}</p>
+                            </div>
                         @enderror
 
                     </div>
@@ -93,16 +95,13 @@
                         <input type="date" class="form-control w-75 float-end  @error('deadline') is-invalid @enderror"
                             id="deadline" name="deadline" value="{{ old('deadline', $data->deadline) }}" />
                         @error('deadline')
-                            <div class="fs-6 text-danger fw-light">{{ $message }}</div>
+                            <div class="fs-6 text-danger fw-light float-end">
+                                <p>{{ $message }}</p>
+                            </div>
                         @enderror
                     </div>
                 </div>
             </li>
-            @foreach ($errors as $message)
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @endforeach
             <input type="hidden" name="id" value="{{ $data->id }}">
             <button type="submit" class="mx-3 mt-2 px-4 float-end btn btn-outline-secondary">Save</button>
         </form>

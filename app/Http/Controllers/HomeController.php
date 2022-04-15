@@ -33,4 +33,9 @@ class HomeController extends Controller
     {
         return view('home', $this->repository->getData());
     }
+
+    public function profile()
+    {
+        return view('profile');
+    }
 }

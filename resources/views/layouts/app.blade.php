@@ -79,7 +79,7 @@
                         @if (Auth::user())
                             <li class="nav-item pt-1">
                                 <a class="nav-link"
-                                    href="{{ route('borrows.index' , ['my_rentals' => true]) }}">My Rentals </a>
+                                    href="{{ route('borrows.index', ['my_rentals' => true]) }}">My Rentals </a>
                             </li>
                         @endif
 
@@ -104,10 +104,15 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
+
+
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -116,6 +121,8 @@
                                         @csrf
                                     </form>
                                 </div>
+
+
                             </li>
                         @endguest
                     </ul>

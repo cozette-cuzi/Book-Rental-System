@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Borrow;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -35,7 +36,7 @@ class UpdateBorrowRequest extends FormRequest
                     }
                 },
             ],
-            'deadline' => 'date|nullable|after:now',
+            'deadline' => ['date','nullable', Rule::requiredIf(\request()->status ==='ACCEPTED')  ,'after:now']
         ];
     }
 
