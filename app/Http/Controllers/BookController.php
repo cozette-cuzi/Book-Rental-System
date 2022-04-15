@@ -46,6 +46,9 @@ class BookController extends Controller
         $data = $request->validated();
         $genres = $data['genres'];
         unset($data['genres']);
+        // if($data['cover_image']) {
+            // 
+        // }
         $book = Book::create($data);
         $genres = $book->genres()->attach($genres);
         return \view('home', $this->homePageRepository->getData());

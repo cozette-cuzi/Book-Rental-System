@@ -36,7 +36,7 @@ class UpdateBorrowRequest extends FormRequest
                     }
                 },
             ],
-            'deadline' => ['date','nullable', Rule::requiredIf(\request()->status ==='ACCEPTED')  ,'after:now']
+            'deadline' => ['date','nullable', Rule::requiredIf(\request()->status ==='ACCEPTED')  ,'after:yesterday']
         ];
     }
 

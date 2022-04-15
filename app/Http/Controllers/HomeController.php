@@ -38,4 +38,11 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+
+    public function search(Request $request)
+    {
+        $books = Book::where('authors', 'like', "%{$request->input('search')}%")
+            ->orWhere('name', 'like', "%{$request->input('search')}%")->get();
+        return \view('books.list', ['data' => $books]);
+    }
 }

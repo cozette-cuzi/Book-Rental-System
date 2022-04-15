@@ -30,7 +30,7 @@ class StoreBookRequest extends FormRequest
             'authors'       => 'required|string|max:255',
             'description'   => 'nullable|string',
             'released_at'   => 'date|required|before:now',
-            'cover_image'   => 'nullable|string',
+            'cover_image'   => 'nullable|image',
             'pages'         => 'required|integer',
             'language_code' => 'nullable|string',
             'isbn'          => 'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i|unique:books,isbn',

@@ -17,10 +17,11 @@ class BorrowFactory extends Factory
         return [
             'reader_id' => rand(1, 10),
             'book_id' => rand(1, 20),
-            'status' =>  $this->faker->randomElement(['PENDING', 'ACCEPTED', 'REJECTED']),
-            'request_processed_at' => Carbon::now(),
-            'request_managed_by' => 1,
-            'deadline' => Carbon::now()->addDays(rand(7, 30))
+            'status' => 'PENDING'
+            // 'status' =>  $this->faker->randomElement(['PENDING', 'ACCEPTED', 'REJECTED']),
+            // 'request_processed_at' => Carbon::now(),
+            // 'request_managed_by' => 1,
+            // 'deadline' => Carbon::now()->addDays(rand(7, 30))
         ];
     }
 }

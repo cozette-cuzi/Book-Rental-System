@@ -25,7 +25,7 @@ class BorrowController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    
+
     {
         if ($request->has('my_rentals')) {
             $data['pending'] = Auth::user()->readerBorrows->where('status', 'PENDING');
@@ -67,10 +67,16 @@ class BorrowController extends Controller
     public function update(Borrow $borrow, UpdateBorrowRequest $request)
     {
         $data = $request->validated();
+        $data['request_managed_by'] = Auth::id();
+        $data['request_processed_at'] = Carbon::now();
+        if ($data['status'] == 'RETURNED') {
+            $data['return_managed_by'] = Auth::id();
+            $data['returned_at'] = Carbon::now();
+        }
+        if ($data['deadline'] == null) {
+            unset($data['deadline']);
+        }
         $borrow->update($data);
-        // if($data['status'] == 'ACCEPTED') {
-        //     $borrow->requestManagedBy()->set
-        // }
         return \view('borrows.show', ['data' => Borrow::find($borrow->id)]);
     }
 

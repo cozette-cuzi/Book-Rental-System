@@ -37,18 +37,19 @@
             </li>
 
             <li class="list-group-item">
-                <span class="fw-bold pe-2">Librarian:</span>
+                <span class="fw-bold pe-2">Request Managed By Librarian:</span>
                 {{ $data->requestManagedBy->name }}
             </li>
-        @elseif($data->status == 'RETURNED')
-            <li class="list-group-item">
-                <span class="fw-bold pe-2">Date of Return:</span>
-                {{ $data->returned_at }}
-            </li>
-            <li class="list-group-item">
-                <span class="fw-bold pe-2">Date of Return:</span>
-                {{ $data->returnManagedBy->name }}
-            </li>
+            @if ($data->status == 'RETURNED')
+                <li class="list-group-item">
+                    <span class="fw-bold pe-2">Date of Return:</span>
+                    {{ $data->returned_at }}
+                </li>
+                <li class="list-group-item">
+                    <span class="fw-bold pe-2">Return Managed By Librarian:</span>
+                    {{ $data->returnManagedBy->name }}
+                </li>
+            @endif
         @endif
         <form method="POST" action="{{ route('borrows.update', $data->id) }}">
             @csrf
@@ -107,7 +108,7 @@
         </form>
         @if ($data->isLate)
             <li class="list-group-item">
-                <span class="fw-bold pe-2 fs-3 text-danger">The rental is late!</span>
+                <span class="fw-bold pe-2 fs-3 text-danger">The Rental Is Late!</span>
             </li>
         @endif
     </ul>
