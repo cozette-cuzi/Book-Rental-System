@@ -45,7 +45,7 @@
                             @method('POST')
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 name="search">
-                            <button class="btn btn-outline-light  btn-sm" type="submit">Search</button>
+                            <button class="btn btn-outline-light text-white  btn-sm" type="submit">Search</button>
                         </form>
 
                     </ul>

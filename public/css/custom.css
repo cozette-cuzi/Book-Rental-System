@@ -7,3 +7,11 @@
   border-radius: 25px;
   background-color: #f1f1f1;
 }
+
+.container {
+  width: 100%;
+padding-right: var(--bs-gutter-x, 6.75rem);
+padding-left: var(--bs-gutter-x, 6.75rem);
+margin-right: auto;
+margin-left: auto;
+}

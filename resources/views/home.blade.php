@@ -1,67 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-100 pb-5">
-        <h1 class="display-5 fw-bold text-primary">Enjoy The Freedom of Reading</h1>
-        <p class="col-md-8 fs-4">We offer smoth, free, easy books rental system. Just rent a book, and enjoy our free
-            service.
-            We offer smoth, free, easy books rental system. Just rent a book, and enjoy our free service.</p>
-        <a class="btn btn-primary px-4 me-2" href="{{ route('register') }}" type="button">
-            Sign Up
-        </a>
-        <a class="btn btn-outline-primary px-4" href="{{ route('login') }}" type="button">
-            Log In
-        </a>
-    </div>
+    <div class="h-100 pb-5 row">
+        <div class="col-9">
+            <h1 class="display-5 fw-bold text-primary">Enjoy The Freedom of Reading</h1>
+            <p class="col-md-9 fs-4">We offer smoth, free, easy books rental system. Just rent a book, and enjoy our free
+                service.
+                We offer smoth, free, easy books rental system. Just rent a book, and enjoy our free service.<br>
+                To try out our service start by searching your favorite book down here.
+                <br>
+            </p>
 
-    <hr>
-    <div class="row my-5">
-        <div class="col">
-            <div class="card mb-3" style="max-width: 18rem;">
-                <div class="card-header fw-bold">Number of users</div>
-                <div class="card-body">
-                    <h5 class="card-text">{{ $data['NOUsers'] }} user</h5>
-                </div>
-            </div>
+            <form action="{{ route('search') }}" class="d-flex w-50">
+                @csrf
+                @method('POST')
+                <input class="form-control me-2" type="search" placeholder="Search for Books" aria-label="Search"
+                    name="search">
+                <button class="btn btn-outline-primary " type="submit">Search</button>
+            </form>
         </div>
-        <div class="col">
-            <div class="card mb-3" style="max-width: 18rem;">
-                <div class="card-header">Number of Genres</div>
-                <div class="card-body">
-                    <h5 class="card-text">{{ $data['NOGenres'] }} Genre</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card  mb-3" style="max-width: 18rem;">
-                <div class="card-header">Number of Books</div>
-                <div class="card-body">
-                    <h5 class="card-text">{{ $data['NOBooks'] }} Books</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card mb-3 " style="max-width: 18rem;">
-                <div class="card-header">Number of active book rentals</div>
-                <div class="card-body">
-                    <h5 class="card-text">{{ $data['NOActiveBookRentals'] }} Active Books Rentals</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="row my-5">
-        <ol class="list-group list-group-numbered">
-            <h1>Our Genres</h1>
-            @foreach ($genres as $key => $genre)
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="col-3">
+            <div class="row my-1">
+                <div class="col-12">
 
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold link-{{ $genre['style'] }}">{{ $genre['name'] }}</div>
+                    <div class="card mb-3" style="max-width: 18rem;">
+                        <div class="card-body  border-5 border-start border-danger">
+                            <h5 class="card-text">{{ $data['NOUsers'] }} users</h5>
+                        </div>
                     </div>
-                    <a href='{{ route('genres.show', $genre['id']) }}' class=' link-{{ $genre['style'] }}'>Visit</a>
-                </li>
-            @endforeach
-        </ol>
+                </div>
+                <div class="col-12">
+                    <div class="card mb-3" style="max-width: 18rem;">
+                        <div class="card-body border-5 border-start border-primary">
+                            <h5 class="card-text">{{ $data['NOGenres'] }} Genres</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card  mb-3" style="max-width: 18rem;">
+                        <div class="card-body border-5 border-start border-secondary">
+                            <h5 class="card-text">{{ $data['NOBooks'] }} Books</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card mb-3 " style="max-width: 18rem;">
+                        <div class="card-body border-5 border-start border-warning">
+                            <h5 class="card-text">{{ $data['NOActiveBookRentals'] }} Active Rentals</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+    <div class="row my-5">
+        <h1 class="fs-4 text-primary">Books By Genres</h1>
+        @foreach ($genres as $key => $genre)
+            <div class="col-4">
+                <div class="card m-2" style="max-width: 18rem;">
+                    <div class="card-body border-5 border-start border-{{ $genre['style'] }}">
+                        <a href='{{ route('genres.show', $genre->id) }}'
+                            class=' link-{{ $genre->style }} fs-5'>{{ $genre->name }}</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection

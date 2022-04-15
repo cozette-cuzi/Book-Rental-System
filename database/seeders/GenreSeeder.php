@@ -23,7 +23,7 @@ class GenreSeeder extends Seeder
         $names = [
             'Action and Adventure',
             'Classics',
-            'Comic Book or Graphic Novel',
+            'Comic Book',
             'Detective and Mystery',
             'Fantasy',
             'Historical Fiction',

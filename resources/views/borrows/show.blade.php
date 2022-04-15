@@ -2,7 +2,7 @@
 
 @section('content')
     <ul class="list-group list-group-flush">
-        <p class="fs-3 fw-bold">
+        <p class="fs-3 fw-bold text-primary">
             Rental Details
         </p>
         <li class="list-group-item">
@@ -104,7 +104,8 @@
                 </div>
             </li>
             <input type="hidden" name="id" value="{{ $data->id }}">
-            <button type="submit" class="mx-3 mt-2 px-4 float-end btn btn-outline-secondary">Save</button>
+            <input type="hidden" name="book_id" value="{{ $data->book_id }}">
+            <button type="submit" class="mx-3 mt-2 px-4 float-end btn btn-outline-secondary">Save Changes</button>
         </form>
         @if ($data->isLate)
             <li class="list-group-item">

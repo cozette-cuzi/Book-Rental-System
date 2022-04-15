@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Book;
 use App\Models\Borrow;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -35,8 +36,14 @@ class UpdateBorrowRequest extends FormRequest
                         $fail('Can\'t move the status to ' . $value . ' when it\'s ' . $old);
                     }
                 },
+                function ($attribute, $value, $fail) {
+                    $available = Book::find(\request('book_id'))->available;
+                    if (!$available && $value == 'ACCEPTED') {
+                        $fail('No More Copies Available in Store.');
+                    }
+                },
             ],
-            'deadline' => ['date','nullable', Rule::requiredIf(\request()->status ==='ACCEPTED')  ,'after:yesterday']
+            'deadline' => ['date', 'nullable', Rule::requiredIf(\request()->status === 'ACCEPTED'), 'after:yesterday']
         ];
     }
 
