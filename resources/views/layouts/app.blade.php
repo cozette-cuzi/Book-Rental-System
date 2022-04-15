@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
 
@@ -48,21 +49,40 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        @if (Auth::user() && Auth::user()->is_librarian)
+                            <li class="nav-item dropdown pt-1">
+                                <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-expanded="false">Librarian Actions</a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('books.create') }}">Add Book</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('genres.create') }}">Add
+                                            Genre</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('genres.index') }}">Genres
+                                            List</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('borrows.index') }}">Rentals
+                                            List</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         @if (Auth::user())
                             <li class="nav-item pt-1">
-                                <a class="nav-link" href="{{ route('borrows.index') }}">My Rentals </a>
+                                <a class="nav-link"
+                                    href="{{ route('borrows.index' , ['my_rentals' => true]) }}">My Rentals </a>
                             </li>
                         @endif
-                        @if (Auth::user() && Auth::user()->is_librarian)
-                            <li class="nav-item pt-1">
-                                <a class="nav-link" href="{{ route('books.create') }}">Add Book</a>
-                            </li>
-                        @endif
-                        @if (Auth::user() && Auth::user()->is_librarian)
-                            <li class="nav-item pt-1">
-                                <a class="nav-link" href="{{ route('genres.create') }}">Add Genre</a>
-                            </li>
-                        @endif
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -87,7 +107,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

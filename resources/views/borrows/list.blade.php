@@ -47,7 +47,7 @@
                                 </th>
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
-                                <td>{{ $borrow->book->created_at }}</td>
+                                <td>{{ $borrow->created_at }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -82,8 +82,8 @@
                                 </th>
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
-                                <td>{{ $borrow->book->created_at }}</td>
-                                <td>{{ $borrow->book->deadline }}</td>
+                                <td>{{ $borrow->created_at }}</td>
+                                <td>{{ $borrow->deadline }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -119,8 +119,8 @@
                                 </th>
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
-                                <td>{{ $borrow->book->created_at }}</td>
-                                <td>{{ $borrow->book->deadline }}</td>
+                                <td>{{ $borrow->created_at }}</td>
+                                <td>{{ $borrow->deadline }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -158,8 +158,8 @@
                                 </th>
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
-                                <td>{{ $borrow->book->created_at }}</td>
-                                <td>{{ $borrow->book->deadline }}</td>
+                                <td>{{ $borrow->created_at }}</td>
+                                <td>{{ $borrow->deadline }}</td>
                             </tr>
                         @endforeach
 
@@ -196,8 +196,8 @@
                                 </th>
                                 <td>{{ $borrow->book->name }}</td>
                                 <td>{{ $borrow->book->authors }}</td>
-                                <td>{{ $borrow->book->created_at }}</td>
-                                <td>{{ $borrow->book->deadline }}</td>
+                                <td>{{ $borrow->created_at }}</td>
+                                <td>{{ $borrow->deadline }}</td>
                             </tr>
                         @endforeach
                     </tbody>

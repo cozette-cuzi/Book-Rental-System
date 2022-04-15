@@ -52,7 +52,7 @@
                             </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="inline"
                                 style="text-decoration: none">
-                                <i class="bi bi-trash3-fill fs-5 text-danger"></i>
+                                <i class="bi bi-trash3-fill fs-5 text-secondary"></i>
                             </a>
                         </div>
                     @endif

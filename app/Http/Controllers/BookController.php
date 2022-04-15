@@ -48,7 +48,7 @@ class BookController extends Controller
         unset($data['genres']);
         $book = Book::create($data);
         $genres = $book->genres()->attach($genres);
-        return redirect()->route('home', $this->homePageRepository->getData());
+        return \view('home', $this->homePageRepository->getData());
     }
 
     public function update(Book $book, UpdateBookRequest $request)

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="w-50 m-auto" method="POST" action="{{ route('books.update2', $book->id) }}">
+    <form class="w-50 m-auto" method="POST" action="{{ route('books.update', $book->id) }}">
         @csrf
         @method('PUT')
         <p class="fs-4">Edit Book</p>
@@ -69,10 +69,10 @@
         </div>
         <div class="mb-3">
             <div class="dropdown">
-                <button class="btn btn-outline-secondary w-100 text-start dropdown-toggle" type="button"
-                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Book Genres
-                </button>
+                <label for="book-genres inline">Book Genres</label>
+                <select class="form-select text-primary w-50 inline text-start dropdown-toggle" aria-label="Book Genres"
+                    type="button" id="book-genres" data-bs-toggle="dropdown" aria-expanded="false">
+                </select>
 
                 <div class="dropdown-menu  px-3">
                     @foreach ($genres as $genre)

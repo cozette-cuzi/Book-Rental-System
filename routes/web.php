@@ -22,8 +22,13 @@ Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.e
 Route::post('books/{id}/borrow', [BookController::class, 'borrow'])->name('books.borrow');
 
 Route::get('/genres/create', [GenreController::class, 'create'])->name('genres.create');
+Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
 
 
 Route::apiResource('/genres', GenreController::class);
 Route::apiResource('/books', BookController::class);
 Route::apiResource('/borrows', BorrowController::class);
+
+Route::get('/csrf', function () {
+    return csrf_token();
+});
