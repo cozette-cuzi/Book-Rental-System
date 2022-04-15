@@ -58,6 +58,6 @@ class GenreController extends Controller
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect()->route('genres.list')->with('data', Genre::all());
+        return redirect()->route('genres.index')->with('data', Genre::all());
     }
 }
