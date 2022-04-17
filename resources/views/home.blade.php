@@ -12,8 +12,6 @@
             </p>
 
             <form action="{{ route('search') }}" class="d-flex w-50">
-                @csrf
-                @method('POST')
                 <input class="form-control me-2" type="search" placeholder="Search for Books" aria-label="Search"
                     name="search">
                 <button class="btn btn-outline-primary " type="submit">Search</button>
@@ -57,12 +55,12 @@
 
     <hr>
     <div class="row my-5">
-        <h1 class="fs-4 text-primary">Books By Genres</h1>
-        @foreach ($genres as $key => $genre)
+        <h1 class="ps-3 fs-2 text-primary">Books By Genres</h1>
+        @foreach ($genres as $genre)
             <div class="col-4">
                 <div class="card m-2" style="max-width: 18rem;">
-                    <div class="card-body border-5 border-start border-{{ $genre['style'] }}">
-                        <a href='{{ route('genres.show', $genre->id) }}'
+                    <div class="card-body border-5 border-start border-{{ $genre->style }}">
+                        <a href='{{ route('genres.show', $genre->name) }}'
                             class=' link-{{ $genre->style }} fs-5'>{{ $genre->name }}</a>
                     </div>
                 </div>

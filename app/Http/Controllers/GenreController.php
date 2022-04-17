@@ -35,9 +35,9 @@ class GenreController extends Controller
         return \view('genres.edit', ['genre' => $genre]);
     }
 
-    public function show($id)
+    public function show($name)
     {
-        $data = Genre::findOrFail($id);
+        $data = Genre::where('name', $name)->first();
         return \view('genres.show', ['data' => $data]);
     }
 

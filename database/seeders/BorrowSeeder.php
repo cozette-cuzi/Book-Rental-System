@@ -24,7 +24,8 @@ class BorrowSeeder extends Seeder
             'status' =>  'ACCEPTED',
             'request_processed_at' => Carbon::now(),
             'request_managed_by' => 1,
-            'deadline' => Carbon::now()->addDays(rand(7, 30))
+            'deadline' => Carbon::now()->addDays(rand(7, 30)),
+            'created_at' => Carbon::now(),
         ]);
         // LATE
         DB::table('borrows')->insert([
@@ -33,7 +34,8 @@ class BorrowSeeder extends Seeder
             'status' =>  'ACCEPTED',
             'request_processed_at' => Carbon::now()->subDays(3),
             'request_managed_by' => 1,
-            'deadline' => Carbon::now()->subDays(2)
+            'deadline' => Carbon::now()->subDays(2),
+            'created_at' => Carbon::now(),
         ]);
         // REJECTED
         DB::table('borrows')->insert([
@@ -42,6 +44,7 @@ class BorrowSeeder extends Seeder
             'status' =>  'REJECTED',
             'request_processed_at' => Carbon::now(),
             'request_managed_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
         // RETURNED
         DB::table('borrows')->insert([
@@ -52,7 +55,8 @@ class BorrowSeeder extends Seeder
             'request_managed_by' => 1,
             'deadline' => Carbon::now()->subDays(2),
             'returned_at' => Carbon::now()->subDays(3),
-            'return_managed_by' => 1
+            'return_managed_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
         // PENDING
         Borrow::factory(10)->create();

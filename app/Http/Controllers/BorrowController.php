@@ -18,6 +18,7 @@ class BorrowController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('is.librarian')->only('update');
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +26,6 @@ class BorrowController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-
     {
         if ($request->has('my_rentals')) {
             $data['pending'] = Auth::user()->readerBorrows->where('status', 'PENDING');
@@ -47,9 +47,6 @@ class BorrowController extends Controller
         }
         return \view('borrows.list', ['data' => $data]);
     }
-
-
-
 
     /**
      * Display the specified resource.
@@ -80,15 +77,4 @@ class BorrowController extends Controller
         return \view('borrows.show', ['data' => Borrow::find($borrow->id)]);
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Borrow  $borrow
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Borrow $borrow)
-    {
-        //
-    }
 }

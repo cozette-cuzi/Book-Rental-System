@@ -1,15 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <ol class="list-group list-group-numbered">
-        @foreach ($data as $book)
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{ $book->name }}</div>
+    <div class="row">
+        <p class="fs-4">
+            Search Results:
+        </p>
+        @foreach ($data as $key => $book)
+            @php
+                $styles = ['secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'primary'];
+            @endphp
+            <div class="col-4">
+                <div class="card m-2" style="max-width: 18rem;">
+                    <div class="card-body border-5 border-start border-{{ $styles[$key % 8] }}">
+                        <a href='{{ route('books.show', $book->id) }}'
+                            class=' link-{{ $styles[$key % 8] }} fs-5'>{{ $book->name }}</a>
+                        <p class="fs5">By {{ $book->authors }}</p>
+                    </div>
                 </div>
-                <a href='{{ route('books.show', $book->id) }}' class=' link-primary'>Visit</a>
-            </li>
+            </div>
         @endforeach
-
-    </ol>
+    </div>
 @endsection

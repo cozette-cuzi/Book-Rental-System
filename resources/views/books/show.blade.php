@@ -8,7 +8,6 @@
             </p>
         </div>
         <div class="col">
-
             <div class="float-end row">
                 <div class="col">
                     @if (Auth::user() && Auth::user()->is_librarian)
@@ -65,43 +64,53 @@
             </div>
         </div>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Authors:</span> {{ $data->authors }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Genres:</span>
-            @foreach ($data->genres as $genre)
-                <span class="chip border text-{{ $genre->style }}">{{ $genre->name }}</span>
-            @endforeach
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Date of Publish: </span>
-            {{ $data->released_at }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Number of Pages:</span>
-            {{ $data->pages }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Language:</span>
-            {{ $data->language_code }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">ISBN:</span>
-            {{ $data->isbn }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Number of Prints in stock:</span>
-            {{ $data->in_stock }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Number of Available Books:</span>
-            {{ $data->available }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Description:</span>
-            {{ $data->description }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-9">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Authors:</span> {{ $data->authors }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Genres:</span>
+                    @foreach ($data->genres as $genre)
+                        <span class="chip border text-{{ $genre->style }}">{{ $genre->name }}</span>
+                    @endforeach
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Date of Publish: </span>
+                    {{ $data->released_at }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Number of Pages:</span>
+                    {{ $data->pages }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Language:</span>
+                    {{ $data->language_code }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">ISBN:</span>
+                    {{ $data->isbn }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Number of Prints in stock:</span>
+                    {{ $data->in_stock }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Number of Available Books:</span>
+                    {{ $data->available }}
+                </li>
+                <li class="list-group-item bg-body">
+                    <span class="fw-bold pe-2">Description:</span>
+                    {{ $data->description }}
+                </li>
+            </ul>
+        </div>
+        @if ($data->cover_image)
+            <div class="col-3 d-flex flex-row-reverse image-container">
+                <img class="image rounded img-thumbnail"
+                    src="{{ asset('uploads/cover_images/' . $data->cover_image) }}" alt="cover image">
+            </div>
+        @endif
+    </div>
 @endsection

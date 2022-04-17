@@ -15,3 +15,15 @@ padding-left: var(--bs-gutter-x, 6.75rem);
 margin-right: auto;
 margin-left: auto;
 }
+
+.image-container {
+  padding:0px 10px 30px;
+  overflow:hidden; 
+  position:relative;
+  content: right;
+}
+
+.image{ 
+  position:absolute;
+  min-height: 100%;
+}

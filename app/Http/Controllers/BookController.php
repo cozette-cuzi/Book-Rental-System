@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -46,9 +47,11 @@ class BookController extends Controller
         $data = $request->validated();
         $genres = $data['genres'];
         unset($data['genres']);
-        // if($data['cover_image']) {
-            // 
-        // }
+        if ($data['cover_image']) {
+            $file = $data['cover_image'];
+            $path =  Storage::disk('public')->put('cover_images', $file);
+            $data['cover_image'] = \explode('cover_images/', $path)[1];
+        }
         $book = Book::create($data);
         $genres = $book->genres()->attach($genres);
         return \view('home', $this->homePageRepository->getData());
@@ -59,6 +62,11 @@ class BookController extends Controller
         $data = $request->validated();
         $genres = $data['genres'];
         unset($data['genres']);
+        if ($data['cover_image']) {
+            $file = $data['cover_image'];
+            $path =  Storage::disk('public')->put('cover_images', $file);
+            $data['cover_image'] = \explode('cover_images/', $path)[1];
+        }
         $book->update($data);
         $genres = $book->genres()->sync($genres);
         return \view('books.show', ['data' => Book::find($book->id)]);

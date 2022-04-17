@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <tr>
-                    <td><a href='{{ route('genres.show', $genre->id) }}'
+                    <td><a href='{{ route('genres.show', $genre->name) }}'
                             class="text-{{ $genre->style }}">{{ $genre->name }}</a>
                     </td>
                     <td class="text-{{ $genre->style }}">{{ $genre->style }}</td>

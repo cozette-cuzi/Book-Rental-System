@@ -41,13 +41,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <form action="{{ route('search') }}" class="d-flex">
-                            @csrf
-                            @method('POST')
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 name="search">
                             <button class="btn btn-outline-light text-white  btn-sm" type="submit">Search</button>
                         </form>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->

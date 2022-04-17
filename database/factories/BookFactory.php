@@ -23,6 +23,7 @@ class BookFactory extends Factory
             'language_code' => $this->faker->randomElement(['hu', 'en', 'fr', 'ar']),
             'isbn' => $this->faker->unique()->isbn13(),
             'description' => $this->faker->sentence(rand(30, 50), true),
+            'cover_image' => $this->faker->image('public/uploads/cover_images', 200, 300, null, false),
             'in_stock' => rand(0, 30),
         ];
     }

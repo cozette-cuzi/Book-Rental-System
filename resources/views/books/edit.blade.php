@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="w-50 m-auto" method="POST" action="{{ route('books.update', $book->id) }}">
+    <form class="w-50 m-auto" method="POST" action="{{ route('books.update', $book->id) }}"
+        enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <p class="fs-4">Edit Book</p>
@@ -101,6 +102,14 @@
                     <div class="fs-6 text-danger fw-light">{{ $message }}</div>
                 @enderror
             </div>
+        </div>
+        <div class="mb-3">
+            <label for="cover_image" class="pb-1">Cover Image</label>
+            <input type="file" class="form-control  @error('cover_image') is-invalid @enderror" placeholder="cover image"
+                id="cover_image" name="cover_image" value="{{ old('cover_image') }}">
+            @error('cover_image')
+                <div class="fs-6 text-danger fw-light">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-outline-primary">Submit</button>
     </form>

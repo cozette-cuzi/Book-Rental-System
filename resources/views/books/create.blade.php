@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="w-50 m-auto" method="POST" action="{{ route('books.store') }}">
+    <form class="w-50 m-auto" method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         <p class="fs-4">Add New Book</p>
         @csrf
         <div class="mb-3">
@@ -65,7 +65,7 @@
         </div>
         <div class="mb-3">
             <div class="dropdown">
-                <button class="btn btn-outline-secondary w-100 text-start dropdown-toggle" type="button"
+                <button class="btn btn-outline-primary w-100 text-start dropdown-toggle" type="button"
                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Book Genres
                 </button>
@@ -93,6 +93,14 @@
                     <div class="fs-6 text-danger fw-light">{{ $message }}</div>
                 @enderror
             </div>
+        </div>
+        <div class="mb-3">
+            <label for="cover_image" class="pb-1">Cover Image</label>
+            <input type="file" class="form-control  @error('cover_image') is-invalid @enderror" placeholder="cover image"
+                id="cover_image" name="cover_image" value="{{ old('cover_image') }}">
+            @error('cover_image')
+                <div class="fs-6 text-danger fw-light">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-outline-primary">Submit</button>
     </form>
