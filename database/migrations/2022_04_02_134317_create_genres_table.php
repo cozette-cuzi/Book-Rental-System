@@ -18,6 +18,7 @@ class CreateGenresTable extends Migration
             $table->string('name');
             $table->enum('style', ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
