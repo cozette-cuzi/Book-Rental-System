@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
+        <div class="col col-8">
+            <p class="fs-1 fw-bold inline text-primary">
+                Genres List
+            </p>
+        </div>
+        <div class="col">
+            <div class="pt-3 float-end">
+                <a href="{{ route('genres.create') }}" class="inline ps-2" style="text-decoration: none">
+                    <i class="bi bi-plus-circle-fill fs-3 text-primary me-2"></i> 
+                </a>
+            </div>
+        </div>
+    </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

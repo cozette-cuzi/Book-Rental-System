@@ -17,4 +17,15 @@ class Genre extends Model
     {
         return $this->belongsToMany(Book::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($genre) {
+            foreach ($genre->books()->get() as $book) {
+                $book->genres()->detach($genre->id);
+            }
+        });
+    }
 }

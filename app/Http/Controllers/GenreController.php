@@ -45,19 +45,19 @@ class GenreController extends Controller
     {
         $data = $request->validated();
         Genre::create($data);
-        return \view('home', $this->homePageRepository->getData());
+        return \redirect()->route('home');
     }
 
     public function update(Genre $genre, GenreRequest $request)
     {
         $data = $request->validated();
         $genre->update($data);
-        return \view('genres.list', ['data' => Genre::all()]);
+        return \redirect()->route('genres.index');
     }
 
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect()->route('genres.index')->with('data', Genre::all());
+        return redirect()->route('genres.index');
     }
 }

@@ -45,37 +45,46 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $data = $request->validated();
-        $genres = $data['genres'];
-        unset($data['genres']);
-        if ($data['cover_image']) {
+        $genres = null;
+        if (isset($data['genres'])) {
+            $genres = $data['genres'];
+            unset($data['genres']);
+        }
+
+        if (isset($data['cover_image'])) {
             $file = $data['cover_image'];
             $path =  Storage::disk('public')->put('cover_images', $file);
             $data['cover_image'] = \explode('cover_images/', $path)[1];
         }
         $book = Book::create($data);
         $genres = $book->genres()->attach($genres);
-        return \view('home', $this->homePageRepository->getData());
+        return \redirect()->route('home');
     }
 
     public function update(Book $book, UpdateBookRequest $request)
     {
         $data = $request->validated();
-        $genres = $data['genres'];
-        unset($data['genres']);
-        if ($data['cover_image']) {
+        $genres = null;
+        if (isset($data['genres'])) {
+            $genres = $data['genres'];
+            unset($data['genres']);
+        }
+
+        if (isset($data['cover_image'])) {
             $file = $data['cover_image'];
             $path =  Storage::disk('public')->put('cover_images', $file);
             $data['cover_image'] = \explode('cover_images/', $path)[1];
         }
+
         $book->update($data);
         $genres = $book->genres()->sync($genres);
-        return \view('books.show', ['data' => Book::find($book->id)]);
+        return \redirect()->route('books.show', $book->id);
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
-        return \view('home', $this->homePageRepository->getData());
+        return \redirect()->route('home');
     }
 
     public function create()

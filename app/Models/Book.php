@@ -29,4 +29,15 @@ class Book extends Model
     {
         return $this->in_stock - $this->borrows->where('status', '=', 'ACCEPTED')->count();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($books) {
+            foreach ($books->borrows()->get() as $borrow) {
+                $borrow->delete();
+            }
+        });
+    }
 }

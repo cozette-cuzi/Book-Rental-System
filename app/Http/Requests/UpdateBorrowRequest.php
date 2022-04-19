@@ -33,7 +33,7 @@ class UpdateBorrowRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $old = Borrow::find(\request('id'))->status;
                     if (!$this->__checkStatusValidity($old, $value)) {
-                        $fail('You Can\'t move the status to ' . $value . ' when it\'s ' . $old);
+                        $fail('Action ' . $old . ' to ' . $value. ' Not Allowed.');
                     }
                 },
                 function ($attribute, $value, $fail) {

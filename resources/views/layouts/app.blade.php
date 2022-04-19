@@ -56,21 +56,28 @@
                                 <ul class="dropdown-menu">
 
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('books.create') }}">Add Book</a>
+                                        <a class="dropdown-item" href="{{ route('books.create') }}">
+                                            <i class="bi bi-plus-circle  me-1"></i>
+                                            Add Book
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('genres.create') }}">Add
-                                            Genre</a>
+                                        <a class="dropdown-item" href="{{ route('genres.create') }}">
+                                            <i class="bi bi-plus-circle  me-1"></i>
+                                            Add Genre
+                                        </a>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('genres.index') }}">Genres
+                                        <a class="dropdown-item" href="{{ route('genres.index') }}">
+                                            <i class="bi bi-list-ul me-1"></i>Genres
                                             List</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('borrows.index') }}">Rentals
+                                        <a class="dropdown-item" href="{{ route('borrows.index') }}">
+                                            <i class="bi bi-journal-check me-1"></i>Rentals
                                             List</a>
                                     </li>
                                 </ul>
@@ -108,10 +115,12 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <i class="bi bi-person-fill me-1"></i>
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();                                                                                                                                                                document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                         document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-door-closed-fill me-1"></i>
                                         {{ __('Logout') }}
                                     </a>
 

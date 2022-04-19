@@ -5,6 +5,9 @@
         <p class="fs-4">
             Search Results:
         </p>
+        @if ($data->count() == 0)
+            <p class="fs-5">No Matching Results!</p>
+        @endif
         @foreach ($data as $key => $book)
             @php
                 $styles = ['secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'primary'];

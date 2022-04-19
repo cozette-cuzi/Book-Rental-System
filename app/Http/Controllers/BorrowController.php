@@ -74,7 +74,6 @@ class BorrowController extends Controller
             unset($data['deadline']);
         }
         $borrow->update($data);
-        return \view('borrows.show', ['data' => Borrow::find($borrow->id)]);
+        return \redirect()->route('borrows.show', $borrow->id);
     }
-
 }
