@@ -25,7 +25,7 @@ class GenreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string',
+            'name'  => 'required|string|min:3|max:255',
             'style' => [
                 'required',
                 Rule::in(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']),
