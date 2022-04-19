@@ -70,7 +70,7 @@
                     Book Genres
                 </button>
 
-                <div class="dropdown-menu  px-3">
+                <div class="dropdown-menu  px-3  @error('genres') is-invalid @enderror">
                     @foreach ($genres as $genre)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="genres[]" value="{{ $genre->id }}"
@@ -81,6 +81,9 @@
                         </div>
                     @endforeach
                 </div>
+                @error('genres')
+                    <div class="fs-6 text-danger fw-light">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 

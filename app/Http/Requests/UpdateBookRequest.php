@@ -33,8 +33,8 @@ class UpdateBookRequest extends FormRequest
             'pages'         => 'required|integer',
             'language_code' => 'nullable|string',
             'isbn'          => 'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i|unique:books,isbn,' . \request('id'),
-            'genres'        => 'array',
-            'genres.*'      => 'exists:genres,id',
+            'genres'        => 'array|required',
+            'genres.*'      => 'required|numeric|exists:genres,id',
             'in_stock'      => 'required|integer|min:0'
         ];
     }
