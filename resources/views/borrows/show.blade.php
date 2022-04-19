@@ -10,7 +10,8 @@
             </div>
             <div class="col-6">
                 @if ($data->isLate)
-                    <span class=" pe-2 fs-4 text-danger float-end"><i class="bi bi-exclamation-triangle"></i> Rental Is Late!</span>
+                    <span class=" pe-2 fs-4 text-danger float-end"><i class="bi bi-exclamation-triangle"></i> Rental Is
+                        Late!</span>
                 @endif
             </div>
         </div>
@@ -30,10 +31,6 @@
         <li class="list-group-item bg-body">
             <span class="fw-bold pe-2">Date: </span>
             {{ $data->book->released_at }}
-        </li>
-        <li class="list-group-item bg-body">
-            <span class="fw-bold pe-2">Reader: </span>
-            {{ $data->reader->name }}
         </li>
         <li class="list-group-item bg-body">
             <span class="fw-bold pe-2">Date of Rental Request:</span>

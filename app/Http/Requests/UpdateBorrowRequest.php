@@ -39,7 +39,7 @@ class UpdateBorrowRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $available = Book::find(\request('book_id'))->available;
                     if (!$available && $value == 'ACCEPTED') {
-                        $fail('No More Copies Available in Store.');
+                        $fail('No More Copies Available in Stock.');
                     }
                 },
             ],

@@ -31,7 +31,7 @@ class UpdateBookRequest extends FormRequest
             'released_at'   => 'date|required|before:now',
             'cover_image'   => 'nullable|image',
             'pages'         => 'required|integer|min:1',
-            'language_code' => 'nullable|string',
+            'language_code' => 'nullable|string|max:3',
             'isbn'          => 'regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i|unique:books,isbn,' . \request('id'),
             'genres'        => 'array|required',
             'genres.*'      => 'required|numeric|exists:genres,id',

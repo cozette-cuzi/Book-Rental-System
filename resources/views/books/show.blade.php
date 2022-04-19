@@ -50,12 +50,12 @@
 
                     @if (Auth::user() && ($borrowed = Auth::user()->borrowed($data->id)))
                         <div>
-                            <p class="fs-5  text-success text-end" style="margin-top: 15px">Requested!</p>
+                            <p class="fs-5  text-primary text-end" style="margin-top: 15px">Requested!</p>
                         </div>
                     @elseif(Auth::user())
                         <form method="POST" action="{{ route('books.borrow', $data->id) }}">
                             @csrf
-                            <button class="btn btn-outline-success px-4 float-end" type="submit" style="margin-top: 15px">
+                            <button class="btn btn-outline-primary px-4 float-end" type="submit" style="margin-top: 15px">
                                 Borrow
                             </button>
                         </form>
@@ -108,8 +108,8 @@
         </div>
         @if ($data->cover_image)
             <div class="col-3 d-flex flex-row-reverse image-container">
-                <img class="image rounded img-thumbnail"
-                    src="{{ asset('uploads/cover_images/' . $data->cover_image) }}" alt="cover image">
+                <img class="image rounded img-thumbnail" src="{{ asset('uploads/cover_images/' . $data->cover_image) }}"
+                    alt="cover image">
             </div>
         @endif
     </div>
