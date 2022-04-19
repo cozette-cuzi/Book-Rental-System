@@ -54,7 +54,7 @@
 
 
     <hr>
-    <div class="row my-5">
+    <div class="row justefy-content-between my-5">
         <h1 class="ps-3 fs-2 text-primary">Books By Genres</h1>
         @foreach ($genres as $genre)
             <div class="col-4">
